@@ -2,7 +2,7 @@ class ExampleTwoAfter {
   static validate(str) {
     if (str != null) {
       if (str.isNotEmpty) {
-        if (str.length >= 11 || str.length >= 14) {
+        if (str.length >= 11 || str.length <= 14) {
           str = str
               .replaceAll('.', '')
               .replaceAll('.', '')
@@ -15,7 +15,7 @@ class ExampleTwoAfter {
               var dg1, dg2, rest;
               var digito;
 
-              var nDigResult, nDigVerific;
+              String nDigResult, nDigVerific = "";
 
               d1 = d2 = 0;
               dg1 = dg2 = rest = 0;
@@ -36,9 +36,10 @@ class ExampleTwoAfter {
               } else {
                 dg2 = 11 - rest;
 
-                nDigVerific = str.substring(str.length - 2, str.length);
+                nDigVerific =
+                    str.toString().substring(str.length - 2, str.length);
               }
-              nDigResult = "" + dg1 + "" + dg2;
+              nDigResult = "" + dg1.toString() + "" + dg2.toString();
               return nDigVerific == nDigResult;
             } catch (error) {
               print("Erro !" + error.toString());
