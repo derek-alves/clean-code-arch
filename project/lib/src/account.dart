@@ -1,11 +1,18 @@
+import 'package:project/src/currency_api.dart';
+
 class Account {
+  final CurrencyApi currencyApi;
   late num balance;
-  Account() {
+
+  Account(this.currencyApi) {
     balance = 0;
   }
 
-  double credit(double amount) {
-    return balance += amount;
+  credit(double amount, [String currency = "BRL"]) {
+    if (currency.isNotEmpty) {
+      amount = currencyApi.convert(amount, currency).toDouble();
+    }
+    balance += amount;
   }
 
   double debit(double amount) {
