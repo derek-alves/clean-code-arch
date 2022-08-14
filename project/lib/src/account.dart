@@ -8,11 +8,11 @@ class Account {
     balance = 0;
   }
 
-  credit(double amount, [String currency = "BRL"]) {
+  double credit(double amount, [String currency = "BRL"]) {
     if (currency.isNotEmpty) {
       amount = currencyApi.convert(amount, currency).toDouble();
     }
-    balance += amount;
+    return balance += amount;
   }
 
   double debit(double amount) {
