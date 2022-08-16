@@ -60,6 +60,22 @@ void main() {
     account.credit(100, "USD");
     verify(() => mockCurrencyApi.convert(any(), any())).called(1);
   });
+
+  test("Deve fazer um crédito de U\$100,00 com mock", () {
+    Account account = AccountMock();
+
+    when(() => account.getBalance).thenReturn(600);
+    when(() => account.credit(any(), any()));
+
+    account.credit(100, "USD");
+    var balance = account.getBalance;
+
+    expect(balance, equals(600));
+    verify(() => mockCurrencyApi.convert(any(), any())).called(1);
+    verify(() => account.getBalance).called(1);
+  });
 }
 
 class CurrencyApiMock extends Mock implements CurrencyApi {}
+
+class AccountMock extends Mock implements Account {}
