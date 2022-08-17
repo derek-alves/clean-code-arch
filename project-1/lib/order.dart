@@ -1,11 +1,37 @@
-import 'package:project/cpf_validate.dart';
+import 'coupon.dart';
+import 'cpf.dart';
+import 'item.dart';
+import 'order_item.dart';
 
 class Order {
-  final String cpf;
+  Cpf? cpf;
+  final List<OrderItem> orderItems = [];
+  Coupon? coupon;
 
-  Order(this.cpf) {
-    if (!CpfValidate.run(cpf)) throw Exception('Inalid cpf');
+  Order({required String cpf}) {
+    this.cpf = Cpf(cpf);
   }
 
-  int get total => 0;
+  void addItem(Item item, {required int quantity}) {
+    orderItems.add(
+      OrderItem(
+        idItem: item.id,
+        price: item.price,
+        quantity: quantity,
+      ),
+    );
+  }
+
+  void addCoupon(Coupon coupon) => this.coupon = coupon;
+
+  double get total {
+    double total = 0;
+    for (var orderItem in orderItems) {
+      total += orderItem.totalPrice;
+    }
+    if (coupon != null) {
+      total -= (total * coupon!.percentage) / 100;
+    }
+    return total;
+  }
 }
