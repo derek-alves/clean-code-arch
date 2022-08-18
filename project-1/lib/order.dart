@@ -7,8 +7,10 @@ class Order {
   Cpf? cpf;
   final List<OrderItem> orderItems = [];
   Coupon? coupon;
+  late DateTime date;
 
-  Order({required String cpf}) {
+  Order({required String cpf, DateTime? date}) {
+    this.date = date ?? DateTime.now();
     this.cpf = Cpf(cpf);
   }
 
@@ -22,7 +24,11 @@ class Order {
     );
   }
 
-  void addCoupon(Coupon coupon) => this.coupon = coupon;
+  void addCoupon(Coupon coupon) {
+    if (coupon.isValid(date)) {
+      this.coupon = coupon;
+    }
+  }
 
   double get total {
     double total = 0;
@@ -30,7 +36,7 @@ class Order {
       total += orderItem.totalPrice;
     }
     if (coupon != null) {
-      total -= (total * coupon!.percentage) / 100;
+      total -= coupon!.calculateDiscount(total, date);
     }
     return total;
   }
