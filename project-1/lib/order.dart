@@ -8,6 +8,7 @@ class Order {
   final List<OrderItem> orderItems = [];
   Coupon? coupon;
   late DateTime date;
+  double _freight = 0;
 
   Order({required String cpf, DateTime? date}) {
     this.date = date ?? DateTime.now();
@@ -15,6 +16,7 @@ class Order {
   }
 
   void addItem(Item item, {required int quantity}) {
+    _freight += item.calculateFreight() * quantity;
     orderItems.add(
       OrderItem(
         idItem: item.id,
@@ -23,6 +25,8 @@ class Order {
       ),
     );
   }
+
+  double getFreight() => _freight;
 
   void addCoupon(Coupon coupon) {
     if (coupon.isValid(date)) {
