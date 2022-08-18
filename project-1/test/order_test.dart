@@ -56,4 +56,22 @@ void main() {
     double total = order.total;
     expect(total, equals(128));
   });
+
+  test('Deve criar pedido com um cupom de desconto expirado', () {
+    const cpf = "839.435.452-10";
+    final order = Order(cpf: cpf, date: DateTime(2022, 8, 14));
+    order.addItem(
+      Item(
+        id: 1,
+        category: 'Musica',
+        description: "CD",
+        price: 30,
+      ),
+      quantity: 3,
+    );
+    order.addCoupon(Coupon("VALE20", 20, DateTime(2022, 8, 13)));
+
+    double total = order.total;
+    expect(total, equals(90));
+  });
 }
