@@ -1,5 +1,5 @@
 # Dart backend
-Projeto com foco em boas práticas e estudos nos conceitos:
+Projeto com foco em boas práticas e exercitando os seguintes conceitos:
 - Clean code
 - Clean arch
 - TDD
