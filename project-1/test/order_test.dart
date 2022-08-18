@@ -74,4 +74,50 @@ void main() {
     double total = order.total;
     expect(total, equals(90));
   });
+
+  test('Deve criar um pedido com 3 itens com o cáculo do frete', () {
+    const cpf = "839.435.452-10";
+    final order = Order(cpf: cpf);
+    order.addItem(
+      Item(
+        id: 4,
+        category: 'Instrumentos Musicais',
+        description: "guitarra",
+        price: 1000,
+        width: 100,
+        height: 30,
+        depth: 10,
+        weight: 3,
+      ),
+      quantity: 1,
+    );
+    order.addItem(
+      Item(
+        id: 5,
+        category: 'Instrumentos Musicais',
+        description: "Amplificador",
+        price: 5000,
+        width: 100,
+        height: 50,
+        depth: 50,
+        weight: 20,
+      ),
+      quantity: 1,
+    );
+    order.addItem(
+      Item(
+        id: 6,
+        category: 'Acessórios',
+        description: "Cabo",
+        price: 30,
+        width: 10,
+        height: 10,
+        depth: 10,
+        weight: 0.9,
+      ),
+      quantity: 3,
+    );
+    double freight = order.getFreight();
+    expect(freight, equals(260));
+  });
 }
