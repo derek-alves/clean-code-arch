@@ -1,5 +1,5 @@
-# clean-code-arch
-Projeto com foco em boas práticas e estudos nos conceitos(aplicado ao backend com dart):
+# Dart backend
+Projeto com foco em boas práticas e estudos nos conceitos:
 - Clean code
 - Clean arch
 - TDD
