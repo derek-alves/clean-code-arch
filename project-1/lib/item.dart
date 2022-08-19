@@ -21,9 +21,4 @@ class Item {
 
   double getVolume() => (width / 100) * (height / 100) * (depth / 100);
   double getDensity() => weight / getVolume();
-  double calculateFreight() {
-    final freight = (1000 * getVolume() * (getDensity() / 100));
-    if (freight < 10) return 10;
-    return freight;
-  }
 }
