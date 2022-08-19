@@ -1,22 +1,30 @@
+import 'package:project/freight_calculator.dart';
+
 import 'coupon.dart';
 import 'cpf.dart';
+import 'default_freight_calculator.dart';
 import 'item.dart';
 import 'order_item.dart';
 
 class Order {
-  Cpf? cpf;
+  final FreightCalculator freightCalculator;
   final List<OrderItem> orderItems = [];
-  Coupon? coupon;
   late DateTime date;
+  Cpf? cpf;
+  Coupon? coupon;
   double _freight = 0;
 
-  Order({required String cpf, DateTime? date}) {
+  Order({
+    required String cpf,
+    DateTime? date,
+    this.freightCalculator = const DefaultFreightCalculator(),
+  }) {
     this.date = date ?? DateTime.now();
     this.cpf = Cpf(cpf);
   }
 
   void addItem(Item item, {required int quantity}) {
-    _freight += item.calculateFreight() * quantity;
+    _freight += freightCalculator.calculate(item) * quantity;
     orderItems.add(
       OrderItem(
         idItem: item.id,
