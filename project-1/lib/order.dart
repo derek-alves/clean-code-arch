@@ -8,7 +8,7 @@ import 'order_item.dart';
 
 class Order {
   final FreightCalculator freightCalculator;
-  final List<OrderItem> orderItems = [];
+  final List<OrderItem> _orderItems = [];
   late DateTime date;
   Cpf? cpf;
   Coupon? coupon;
@@ -25,7 +25,7 @@ class Order {
 
   void addItem(Item item, {required int quantity}) {
     _freight += freightCalculator.calculate(item) * quantity;
-    orderItems.add(
+    _orderItems.add(
       OrderItem(
         idItem: item.id,
         price: item.price,
@@ -44,7 +44,7 @@ class Order {
 
   double get total {
     double total = 0;
-    for (var orderItem in orderItems) {
+    for (var orderItem in _orderItems) {
       total += orderItem.totalPrice;
     }
     if (coupon != null) {
