@@ -1,8 +1,7 @@
-import 'package:project/freight_calculator.dart';
-
 import 'coupon.dart';
 import 'cpf.dart';
 import 'default_freight_calculator.dart';
+import 'freight_calculator.dart';
 import 'item.dart';
 import 'order_item.dart';
 

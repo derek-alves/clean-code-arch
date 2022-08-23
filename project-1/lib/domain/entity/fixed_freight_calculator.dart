@@ -1,5 +1,5 @@
-import 'package:project/freight_calculator.dart';
-import 'package:project/item.dart';
+import 'freight_calculator.dart';
+import 'item.dart';
 
 class FixedFreightCalculator implements FreightCalculator {
   @override

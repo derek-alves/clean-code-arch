@@ -1,4 +1,4 @@
-import 'package:project/order_item.dart';
+import 'package:project/domain/entity/order_item.dart';
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 

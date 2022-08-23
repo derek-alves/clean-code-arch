@@ -1,8 +1,9 @@
-import 'package:project/coupon.dart';
-import 'package:project/default_freight_calculator.dart';
-import 'package:project/fixed_freight_calculator.dart';
-import 'package:project/item.dart';
-import 'package:project/order.dart';
+import 'package:project/domain/entity/coupon.dart';
+import 'package:project/domain/entity/default_freight_calculator.dart';
+import 'package:project/domain/entity/fixed_freight_calculator.dart';
+import 'package:project/domain/entity/item.dart';
+import 'package:project/domain/entity/order.dart';
+
 import 'package:test/test.dart';
 
 void main() {

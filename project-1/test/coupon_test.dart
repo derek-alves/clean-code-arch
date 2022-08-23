@@ -1,4 +1,4 @@
-import 'package:project/coupon.dart';
+import 'package:project/domain/entity/coupon.dart';
 import 'package:test/test.dart';
 
 void main() {

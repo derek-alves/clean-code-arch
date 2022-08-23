@@ -1,4 +1,4 @@
-import 'package:project/cpf.dart';
+import 'package:project/domain/entity/cpf.dart';
 import 'package:test/test.dart';
 
 void main() {
