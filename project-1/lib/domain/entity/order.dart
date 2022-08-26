@@ -49,6 +49,7 @@ class Order {
     if (coupon != null) {
       total -= coupon!.calculateDiscount(total, date);
     }
+    total += getFreight();
     return total;
   }
 }
