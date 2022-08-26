@@ -1,3 +1,5 @@
+import 'package:project/domain/entity/order_code.dart';
+
 import 'coupon.dart';
 import 'cpf.dart';
 import 'default_freight_calculator.dart';
@@ -12,14 +14,18 @@ class Order {
   Cpf? cpf;
   Coupon? coupon;
   double _freight = 0;
+  OrderCode? code;
+  final int sequency;
 
   Order({
     required String cpf,
     DateTime? date,
     this.freightCalculator = const DefaultFreightCalculator(),
+    this.sequency = 1,
   }) {
     this.date = date ?? DateTime.now();
     this.cpf = Cpf(cpf);
+    code = OrderCode(date: this.date, sequency: sequency);
   }
 
   void addItem(Item item, {required int quantity}) {
