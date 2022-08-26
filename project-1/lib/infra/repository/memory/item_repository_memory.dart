@@ -1,8 +1,10 @@
+import 'package:collection/collection.dart';
+
 import 'package:project/domain/entity/item.dart';
 import 'package:project/domain/repository/item_repository.dart';
 
 class ItemRepositoryMemory implements ItemRepository {
-  late final List items;
+  late final List<Item> items;
   ItemRepositoryMemory() {
     items = [
       Item(id: 1, category: 'Musica', description: "CD", price: 30),
@@ -11,8 +13,7 @@ class ItemRepositoryMemory implements ItemRepository {
     ];
   }
   @override
-  Future<Item?> findById(int id) {
-    // TODO: implement findById
-    throw UnimplementedError();
+  Future<Item?> findById(int id) async {
+    return Future.value(items.firstWhereOrNull((item) => item.id == id));
   }
 }
