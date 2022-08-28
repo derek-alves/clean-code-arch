@@ -1,5 +1,9 @@
 class PlaceOrderOutput {
   final double total;
+  final String code;
 
-  const PlaceOrderOutput(this.total);
+  const PlaceOrderOutput({
+    required this.total,
+    required this.code,
+  });
 }
