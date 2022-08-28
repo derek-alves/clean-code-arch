@@ -14,7 +14,7 @@ class Order {
   Cpf? cpf;
   Coupon? coupon;
   double _freight = 0;
-  OrderCode? code;
+  OrderCode? _code;
   final int sequency;
 
   Order({
@@ -25,7 +25,7 @@ class Order {
   }) {
     this.date = date ?? DateTime.now();
     this.cpf = Cpf(cpf);
-    code = OrderCode(date: this.date, sequency: sequency);
+    _code = OrderCode(date: this.date, sequency: sequency);
   }
 
   void addItem(Item item, {required int quantity}) {
@@ -58,4 +58,6 @@ class Order {
     total += getFreight();
     return total;
   }
+
+  String getCode() => _code!.value;
 }
