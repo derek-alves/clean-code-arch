@@ -9,4 +9,9 @@ class OrderRepositoryMemory implements OrderRepository {
     _orders.add(order);
     return Future.value();
   }
+
+  @override
+  Future<int> count() {
+    return Future.value(_orders.length);
+  }
 }
