@@ -238,7 +238,7 @@ void main() {
       quantity: 1,
     );
 
-    var code = order.code?.value;
+    var code = order.getCode();
     expect(code, equals("202200000001"));
   });
 }
