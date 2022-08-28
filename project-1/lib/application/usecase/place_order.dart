@@ -18,7 +18,8 @@ class PlaceOrder {
   });
 
   Future<PlaceOrderOutput> execute(PlaceOrderInput input) async {
-    final order = Order(cpf: input.cpf, date: input.date);
+    final sequency = await orderRepository.count() + 1;
+    final order = Order(cpf: input.cpf, date: input.date, sequency: sequency);
     for (var orderItem in input.orderItems) {
       var item = await itemRepository.findById(orderItem.idItem);
       if (item == null) throw Exception("Item not found");
@@ -29,6 +30,9 @@ class PlaceOrder {
       if (coupon != null) order.addCoupon(coupon);
     }
     await orderRepository.save(order);
-    return PlaceOrderOutput(order.total);
+    return PlaceOrderOutput(
+      total: order.total,
+      code: order.getCode(),
+    );
   }
 }
