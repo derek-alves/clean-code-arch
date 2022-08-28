@@ -58,4 +58,30 @@ void main() {
     final output = await placeOrder.execute(input);
     expect(output.total, equals(6350));
   });
+
+  test('Deve fazer um pedido com código', () async {
+    final itemRepository = ItemRepositoryMemory();
+    final orderRepository = OrderRepositoryMemory();
+    final couponRepository = CouponRepositoryMemory();
+
+    final placeOrder = PlaceOrder(
+      couponRepository: couponRepository,
+      itemRepository: itemRepository,
+      orderRepository: orderRepository,
+    );
+
+    final inputMap = {
+      'cpf': '457.046.588-90',
+      'orderItems': [
+        {"idItem": 4, "quantity": 1},
+        {"idItem": 5, "quantity": 1},
+        {"idItem": 6, "quantity": 3}
+      ],
+      'date': DateTime(2022, 08, 23),
+    };
+    final input = PlaceOrderInput.fromMap(inputMap);
+
+    final output = await placeOrder.execute(input);
+    expect(output.code, equals("202200000001"));
+  });
 }
