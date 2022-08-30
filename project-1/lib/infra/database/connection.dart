@@ -1,3 +1,5 @@
-abstract class Connection {
-  Future<dynamic> query(String statement, List params);
+abstract class Connection<T> {
+  Future<T> createConnection();
+  Future<T> get connection;
+  Future<dynamic> query(String sql, [List? params]);
 }
