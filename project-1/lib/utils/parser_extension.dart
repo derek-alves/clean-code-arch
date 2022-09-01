@@ -5,6 +5,8 @@ extension ParserExtension on String {
         return toString();
       case int:
         return int.parse(toString());
+      case double:
+        return double.parse(toString());
       default:
         return toString();
     }
