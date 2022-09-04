@@ -2,12 +2,12 @@ version: '3.3'
 services:
   database:
     image: mysql:5.7
-    container_name: mysql
+    container_name: market_mysql
     restart: always
     environment:
-      MYSQL_DATABASE: 'dart'   
-      MYSQL_USER: 'dart_user'
-      MYSQL_PASSWORD: 'dart_pass'      
+      MYSQL_DATABASE: 'market'   
+      MYSQL_USER: 'market_user'
+      MYSQL_PASSWORD: 'market_pass'      
       MYSQL_ROOT_PASSWORD: 'root'
     ports:
       - '3306:3306'
