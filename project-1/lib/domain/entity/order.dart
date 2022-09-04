@@ -8,6 +8,7 @@ import 'item.dart';
 import 'order_item.dart';
 
 class Order {
+  final int? id;
   final FreightCalculator freightCalculator;
   final List<OrderItem> _orderItems = [];
   late DateTime date;
@@ -18,6 +19,7 @@ class Order {
   final int sequency;
 
   Order({
+    this.id,
     required String cpf,
     DateTime? date,
     this.freightCalculator = const DefaultFreightCalculator(),
