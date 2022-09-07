@@ -15,4 +15,4 @@ services:
       - '3306'
     volumes:
       - './volumes/mysql:/var/lib/mysql'
-      - "./db.sql:/docker-entrypoint-initdb.d/1.sql"
+      - "./lib/infra/database/create.sql:/docker-entrypoint-initdb.d/1.sql"
