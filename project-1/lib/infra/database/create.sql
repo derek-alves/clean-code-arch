@@ -17,7 +17,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `market`.`coupon` (
   `code` VARCHAR(255) NOT NULL,
   `percentage` FLOAT NOT NULL,
-  `expire_date` datetime,
+  `expire_date` BIGINT(255),
   PRIMARY KEY (`code`))
 ENGINE = InnoDB;
 
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `market`.`order` (
   `code` VARCHAR(255) NOT NULL,
   `cpf` VARCHAR(255) NOT NULL,
   `freight` FLOAT NOT NULL,
-  `issue_date` datetime DEFAULT CURRENT_TIMESTAMP,
+  `issue_date` BIGINT(255),
   `sequence` INT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -37,7 +37,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `market`.`order_item` (
   `id`INT NOT NULL AUTO_INCREMENT,
   `id_order` INT NOT NULL,
-  'id_item' INT NOT NULL,
+  `id_item` INT NOT NULL,
   `price` FLOAT NOT NULL,
   `quantity` INT NOT NULL,
   PRIMARY KEY (`id`),
