@@ -5,7 +5,7 @@ class Item {
   final double price;
   final double width;
   final double height;
-  final double depth;
+  final double length;
   final double weight;
 
   Item({
@@ -15,10 +15,23 @@ class Item {
     required this.price,
     this.width = 0,
     this.height = 0,
-    this.depth = 0,
+    this.length = 0,
     this.weight = 0,
   });
 
-  double getVolume() => (width / 100) * (height / 100) * (depth / 100);
+  factory Item.fromMap(Map<String, dynamic> map) {
+    return Item(
+      id: map['id'],
+      category: map['category'],
+      description: map['description'],
+      price: map['price'],
+      length: map['length'],
+      height: map['height'],
+      weight: map['weight'],
+      width: map['width'],
+    );
+  }
+
+  double getVolume() => (width / 100) * (height / 100) * (length / 100);
   double getDensity() => weight / getVolume();
 }

@@ -1,12 +1,21 @@
 class Coupon {
   final String code;
   final double percentage;
-  DateTime? expiredDate;
+  int? expiredDate;
 
   Coupon(this.code, this.percentage, [this.expiredDate]);
+
+  factory Coupon.fromMap(Map<String, dynamic> map) {
+    return Coupon(
+      map['code'],
+      map['percentage'],
+      map['expire_date'],
+    );
+  }
+
   bool isValid([DateTime? today]) {
     if (expiredDate == null) return true;
-    return expiredDate!.millisecondsSinceEpoch >=
+    return expiredDate! >=
         (today?.millisecondsSinceEpoch ??
             DateTime.now().millisecondsSinceEpoch);
   }
