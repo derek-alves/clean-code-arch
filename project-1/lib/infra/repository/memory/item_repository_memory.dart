@@ -2,10 +2,12 @@ import 'package:collection/collection.dart';
 
 import 'package:project/domain/entity/item.dart';
 import 'package:project/domain/repository/item_repository.dart';
+import 'package:project/infra/database/connection.dart';
 
 class ItemRepositoryMemory implements ItemRepository {
+  final Connection dbConnection;
   late final List<Item> items;
-  ItemRepositoryMemory() {
+  ItemRepositoryMemory(this.dbConnection) {
     items = [
       Item(id: 1, category: 'Musica', description: "CD", price: 30),
       Item(id: 2, category: 'Video', description: "DVD", price: 50),
