@@ -1,22 +1,28 @@
 import 'package:project/application/usecase/place_order.dart';
 import 'package:project/application/usecase/place_order_input.dart';
-import 'package:project/infra/repository/memory/coupon_repository_memory.dart';
-import 'package:project/infra/repository/memory/item_repository_memory.dart';
+import 'package:project/infra/database/connection.dart';
+import 'package:project/infra/database/sql_connection_adapter.dart';
+import 'package:project/infra/repository/database/coupon_repository_impl.dart';
+import 'package:project/infra/repository/database/item_repository_impl.dart';
 import 'package:project/infra/repository/memory/order_repository_memory.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test('Deve fazer um pedido', () async {
-    final itemRepository = ItemRepositoryMemory();
+  late final Connection connection;
+  late final PlaceOrder placeOrder;
+  setUpAll(() {
+    connection = SqlConnectionAdapter();
+    final itemRepository = ItemRepositoryImpl(connection);
     final orderRepository = OrderRepositoryMemory();
-    final couponRepository = CouponRepositoryMemory();
+    final couponRepository = CouponRepositoryImpl(connection);
 
-    final placeOrder = PlaceOrder(
+    placeOrder = PlaceOrder(
       couponRepository: couponRepository,
       itemRepository: itemRepository,
       orderRepository: orderRepository,
     );
-
+  });
+  test('Deve fazer um pedido', () async {
     final inputMap = {
       'cpf': '457.046.588-90',
       'orderItems': [
@@ -30,20 +36,10 @@ void main() {
     final input = PlaceOrderInput.fromMap(inputMap);
 
     final output = await placeOrder.execute(input);
-    expect(output.total, equals(88));
+    expect(output.total, equals(138));
   });
 
   test('Deve fazer um pedido com cálculo de frete', () async {
-    final itemRepository = ItemRepositoryMemory();
-    final orderRepository = OrderRepositoryMemory();
-    final couponRepository = CouponRepositoryMemory();
-
-    final placeOrder = PlaceOrder(
-      couponRepository: couponRepository,
-      itemRepository: itemRepository,
-      orderRepository: orderRepository,
-    );
-
     final inputMap = {
       'cpf': '457.046.588-90',
       'orderItems': [
@@ -51,7 +47,7 @@ void main() {
         {"idItem": 5, "quantity": 1},
         {"idItem": 6, "quantity": 3}
       ],
-      'date': DateTime(2022, 08, 23),
+      'date': DateTime(2022, 12, 21),
     };
     final input = PlaceOrderInput.fromMap(inputMap);
 
@@ -60,16 +56,6 @@ void main() {
   });
 
   test('Deve fazer um pedido com código', () async {
-    final itemRepository = ItemRepositoryMemory();
-    final orderRepository = OrderRepositoryMemory();
-    final couponRepository = CouponRepositoryMemory();
-
-    final placeOrder = PlaceOrder(
-      couponRepository: couponRepository,
-      itemRepository: itemRepository,
-      orderRepository: orderRepository,
-    );
-
     final inputMap = {
       'cpf': '457.046.588-90',
       'orderItems': [
@@ -77,7 +63,7 @@ void main() {
         {"idItem": 5, "quantity": 1},
         {"idItem": 6, "quantity": 3}
       ],
-      'date': DateTime(2022, 08, 23),
+      'date': DateTime(2022, 12, 21),
     };
     final input = PlaceOrderInput.fromMap(inputMap);
 
