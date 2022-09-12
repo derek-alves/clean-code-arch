@@ -11,7 +11,7 @@ class Order {
   final int? id;
   final FreightCalculator freightCalculator;
   final List<OrderItem> _orderItems = [];
-  late DateTime date;
+  late int date;
   Cpf? cpf;
   Coupon? coupon;
   double _freight = 0;
@@ -25,9 +25,10 @@ class Order {
     this.freightCalculator = const DefaultFreightCalculator(),
     this.sequency = 1,
   }) {
-    this.date = date ?? DateTime.now();
+    this.date = (date ?? DateTime.now()).millisecondsSinceEpoch;
+
     this.cpf = Cpf(cpf);
-    _code = OrderCode(date: this.date, sequency: sequency);
+    _code = OrderCode(date: date ?? DateTime.now(), sequency: sequency);
   }
 
   void addItem(Item item, {required int quantity}) {
@@ -41,10 +42,14 @@ class Order {
     );
   }
 
+  String getCPF() => cpf!.value;
+
+  List<OrderItem> getOrdemItemList() => _orderItems;
+
   double getFreight() => _freight;
 
   void addCoupon(Coupon coupon) {
-    if (coupon.isValid(date)) {
+    if (coupon.isValid(DateTime.fromMillisecondsSinceEpoch(date))) {
       this.coupon = coupon;
     }
   }
@@ -55,11 +60,14 @@ class Order {
       total += orderItem.totalPrice;
     }
     if (coupon != null) {
-      total -= coupon!.calculateDiscount(total, date);
+      total -= coupon!
+          .calculateDiscount(total, DateTime.fromMillisecondsSinceEpoch(date));
     }
     total += getFreight();
     return total;
   }
 
   String getCode() => _code!.value;
+
+  //factory Order.fromMap(Map<String, dynamic> map) => Order(cpf: cpf);
 }
