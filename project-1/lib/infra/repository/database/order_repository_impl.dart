@@ -26,7 +26,7 @@ class OrderRepositoryImpl implements OrderRepository {
           "insert into market.order_item (id_item,id_order,quantity, price) values (?,?,?,?)",
           [
             orderItem.idItem,
-            orderData.first.fields["id_order"],
+            orderData.insertId,
             orderItem.quantity,
             orderItem.price,
           ]);
