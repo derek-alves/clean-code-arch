@@ -1,17 +1,16 @@
-import 'package:project/application/usecase/place_order_output.dart';
-
-import '../../domain/entity/order.dart';
-import '../../domain/repository/coupon_repository.dart';
-import '../../domain/repository/item_repository.dart';
-import '../../domain/repository/order_repository.dart';
+import '../../../domain/entity/order.dart';
+import '../../../domain/repository/coupon_repository.dart';
+import '../../../domain/repository/item_repository.dart';
+import '../../../domain/repository/order_repository.dart';
 import 'place_order_input.dart';
+import 'place_order_output.dart';
 
-class PlaceOrder {
+class PlaceOrderUsecase {
   final ItemRepository itemRepository;
   final OrderRepository orderRepository;
   final CouponRepository couponRepository;
 
-  PlaceOrder({
+  PlaceOrderUsecase({
     required this.itemRepository,
     required this.orderRepository,
     required this.couponRepository,
