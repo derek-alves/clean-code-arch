@@ -1,22 +1,22 @@
-import 'package:project/application/usecase/place_order.dart';
-import 'package:project/application/usecase/place_order_input.dart';
+import 'package:project/application/usecase/place_order/place_order.dart';
+import 'package:test/test.dart';
+
 import 'package:project/infra/database/connection.dart';
 import 'package:project/infra/database/sql_connection_adapter.dart';
 import 'package:project/infra/repository/database/coupon_repository_impl.dart';
 import 'package:project/infra/repository/database/item_repository_impl.dart';
 import 'package:project/infra/repository/database/order_repository_impl.dart';
-import 'package:test/test.dart';
 
 void main() {
   late final Connection connection;
-  late final PlaceOrder placeOrder;
+  late final PlaceOrderUsecase placeOrder;
   setUpAll(() {
     connection = SqlConnectionAdapter();
     final itemRepository = ItemRepositoryImpl(connection);
     final orderRepository = OrderRepositoryImpl(connection);
     final couponRepository = CouponRepositoryImpl(connection);
 
-    placeOrder = PlaceOrder(
+    placeOrder = PlaceOrderUsecase(
       couponRepository: couponRepository,
       itemRepository: itemRepository,
       orderRepository: orderRepository,
@@ -68,6 +68,6 @@ void main() {
     final input = PlaceOrderInput.fromMap(inputMap);
 
     final output = await placeOrder.execute(input);
-    //expect(output.code, equals("202200000001"));
+    expect(output.code, isA<String>());
   });
 }
