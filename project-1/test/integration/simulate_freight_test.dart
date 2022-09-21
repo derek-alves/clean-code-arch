@@ -13,7 +13,7 @@ void main() {
   late final ItemRepository itemRepository;
   late final FreightCalculator freightCalculator;
 
-  setUp((() {
+  setUpAll((() {
     freightCalculator = DefaultFreightCalculator();
     connection = SqlConnectionAdapter();
     itemRepository = ItemRepositoryImpl(connection);
