@@ -6,14 +6,14 @@ import 'package:test/test.dart';
 
 void main() {
   test('Deve criar uma interface gráfica com tema claro ', () async {
-    final view = View();
+    final view = View(LightWidgetFactory());
     expect(view.label.color, equals("black"));
     expect(view.button.color, equals("white"));
     expect(view.button.backgroundColor, equals("blue"));
   });
 
   test('Deve criar uma interface gráfica com tema escuro ', () async {
-    final view = View();
+    final view = View(DarkWidgetFactory());
     expect(view.label.color, equals("white"));
     expect(view.button.color, equals("white"));
     expect(view.button.backgroundColor, equals("black"));
