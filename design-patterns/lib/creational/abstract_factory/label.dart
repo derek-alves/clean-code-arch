@@ -1,7 +1,3 @@
-class Label {
+abstract class Label {
   late String color;
-
-  Label() {
-    color = "black";
-  }
 }
