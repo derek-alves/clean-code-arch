@@ -1,3 +1,5 @@
+import 'package:project/domain/factory/repository_factory.dart';
+
 import '../../../domain/entity/order.dart';
 import '../../../domain/repository/coupon_repository.dart';
 import '../../../domain/repository/item_repository.dart';
@@ -6,15 +8,15 @@ import 'place_order_input.dart';
 import 'place_order_output.dart';
 
 class PlaceOrderUsecase {
-  final ItemRepository itemRepository;
-  final OrderRepository orderRepository;
-  final CouponRepository couponRepository;
+  late final ItemRepository itemRepository;
+  late final OrderRepository orderRepository;
+  late final CouponRepository couponRepository;
 
-  PlaceOrderUsecase({
-    required this.itemRepository,
-    required this.orderRepository,
-    required this.couponRepository,
-  });
+  PlaceOrderUsecase(RepositoryFactory repositoryFactory) {
+    itemRepository = repositoryFactory.createItemRepository();
+    orderRepository = repositoryFactory.createOrderRepository();
+    couponRepository = repositoryFactory.createCouponRepository();
+  }
 
   Future<PlaceOrderOutput> execute(PlaceOrderInput input) async {
     final sequency = await orderRepository.count() + 1;
