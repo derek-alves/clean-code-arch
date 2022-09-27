@@ -1,4 +1,4 @@
-import 'package:design_patterns/creational/abstract_factory/button.dart';
+import 'button.dart';
 
 class DarkButton implements Button {
   @override
