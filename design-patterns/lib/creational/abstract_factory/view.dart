@@ -1,7 +1,7 @@
 import 'package:design_patterns/creational/abstract_factory/widget_factory.dart';
 
-import 'button.dart';
-import 'label.dart';
+import './button/button.dart';
+import './label/label.dart';
 
 class View {
   late final Label label;
