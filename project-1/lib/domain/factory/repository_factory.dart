@@ -1,7 +1,7 @@
-import '../../infra/repository/repository.dart';
+import '../repository/repository.dart';
 
 abstract class RepositoryFactory {
-  ItemRepositoryImpl createItemRepository();
-  CouponRepositoryImpl createCouponRepository();
-  OrderRepositoryImpl createOrderRepository();
+  ItemRepository createItemRepository();
+  CouponRepository createCouponRepository();
+  OrderRepository createOrderRepository();
 }
