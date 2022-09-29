@@ -1,26 +1,17 @@
 import 'package:project/application/usecase/place_order/place_order.dart';
+import 'package:project/infra/factory/database_repository_factory.dart';
 import 'package:test/test.dart';
 
 import 'package:project/infra/database/connection.dart';
 import 'package:project/infra/database/sql_connection_adapter.dart';
-import 'package:project/infra/repository/database/coupon_repository_impl.dart';
-import 'package:project/infra/repository/database/item_repository_impl.dart';
-import 'package:project/infra/repository/database/order_repository_impl.dart';
 
 void main() {
   late final Connection connection;
   late final PlaceOrderUsecase placeOrder;
   setUpAll(() {
     connection = SqlConnectionAdapter();
-    final itemRepository = ItemRepositoryImpl(connection);
-    final orderRepository = OrderRepositoryImpl(connection);
-    final couponRepository = CouponRepositoryImpl(connection);
-
-    placeOrder = PlaceOrderUsecase(
-      couponRepository: couponRepository,
-      itemRepository: itemRepository,
-      orderRepository: orderRepository,
-    );
+    final repositoryFactory = DatabaseRepositoryFactory(connection);
+    placeOrder = PlaceOrderUsecase(repositoryFactory);
   });
   test('Deve fazer um pedido', () async {
     final inputMap = {
