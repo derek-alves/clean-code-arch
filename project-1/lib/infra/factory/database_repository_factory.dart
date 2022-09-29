@@ -1,24 +1,25 @@
 import 'package:project/domain/factory/repository_factory.dart';
-import 'package:project/infra/repository/database/order_repository_impl.dart';
-import 'package:project/infra/repository/database/item_repository_impl.dart';
-import 'package:project/infra/repository/database/coupon_repository_impl.dart';
+import 'package:project/infra/database/database.dart';
+import 'package:project/infra/repository/repository.dart';
+
+import '../../domain/repository/repository.dart';
 
 class DatabaseRepositoryFactory implements RepositoryFactory {
+  final Connection connection;
+
+  DatabaseRepositoryFactory(this.connection);
   @override
-  CouponRepositoryImpl createCouponRepository() {
-    // TODO: implement createCouponRepository
-    throw UnimplementedError();
+  CouponRepository createCouponRepository() {
+    return CouponRepositoryImpl(connection);
   }
 
   @override
-  ItemRepositoryImpl createItemRepository() {
-    // TODO: implement createItemRepository
-    throw UnimplementedError();
+  ItemRepository createItemRepository() {
+    return ItemRepositoryImpl(connection);
   }
 
   @override
-  OrderRepositoryImpl createOrderRepository() {
-    // TODO: implement createOrderRepository
-    throw UnimplementedError();
+  OrderRepository createOrderRepository() {
+    return OrderRepositoryImpl(connection);
   }
 }

@@ -1,21 +1,21 @@
 import 'package:project/domain/factory/repository_factory.dart';
-import 'package:project/infra/repository/repository.dart';
 
 import '../../domain/repository/repository.dart';
+import '../repository/repository.dart';
 
-class DatabaseRepositoryFactory implements RepositoryFactory {
+class MemoryRepositoryFactory implements RepositoryFactory {
   @override
   CouponRepository createCouponRepository() {
-    return CouponRepositoryImpl(dbConnection);
+    return CouponRepositoryMemory();
   }
 
   @override
   ItemRepository createItemRepository() {
-    return ItemRepositoryImpl(dbConnection);
+    return ItemRepositoryMemory();
   }
 
   @override
   OrderRepository createOrderRepository() {
-    return OrderRepositoryImpl(connection);
+    return OrderRepositoryMemory();
   }
 }
