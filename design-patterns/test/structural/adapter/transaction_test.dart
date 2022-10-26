@@ -1,5 +1,6 @@
 import 'package:design_patterns/scructural/adapter/paypal_transaction.dart';
 import 'package:design_patterns/scructural/adapter/stripe_transaction.dart';
+import 'package:design_patterns/scructural/adapter/stripe_transaction_adapter.dart';
 import 'package:test/test.dart';
 
 //Converter a interface de uma classe em outra interface, esperada pelos clientes
