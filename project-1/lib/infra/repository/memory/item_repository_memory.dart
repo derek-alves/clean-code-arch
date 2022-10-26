@@ -7,9 +7,36 @@ class ItemRepositoryMemory implements ItemRepository {
   late final List<Item> items;
   ItemRepositoryMemory() {
     items = [
-      Item(id: 1, category: 'Musica', description: "CD", price: 30),
-      Item(id: 2, category: 'Video', description: "DVD", price: 50),
-      Item(id: 3, category: 'Video', description: "VHS", price: 10),
+      Item(
+        id: 1,
+        category: 'Musica',
+        description: "CD",
+        price: 30,
+        width: 30,
+        height: 30,
+        length: 10,
+        weight: 1,
+      ),
+      Item(
+        id: 2,
+        category: 'Video',
+        description: "DVD",
+        price: 50,
+        width: 40,
+        height: 20,
+        length: 10,
+        weight: 1,
+      ),
+      Item(
+        id: 3,
+        category: 'Video',
+        description: "VHS",
+        price: 10,
+        width: 40,
+        height: 20,
+        length: 10,
+        weight: 1,
+      ),
       Item(
         id: 4,
         category: 'Instrumentos Musicais',
