@@ -4,8 +4,8 @@ import 'package:project/infra/repository/repository.dart';
 
 import '../../domain/repository/repository.dart';
 
-class DatabaseRepositoryFactory implements RepositoryFactory {
-  final Connection connection;
+class DatabaseRepositoryFactory<T> implements RepositoryFactory {
+  final Connection<T> connection;
 
   DatabaseRepositoryFactory(this.connection);
   @override
