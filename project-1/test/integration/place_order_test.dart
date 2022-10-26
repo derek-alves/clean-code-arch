@@ -1,3 +1,4 @@
+import 'package:mysql1/mysql1.dart';
 import 'package:project/application/usecase/place_order/place_order.dart';
 import 'package:project/infra/factory/database_repository_factory.dart';
 import 'package:test/test.dart';
@@ -6,11 +7,12 @@ import 'package:project/infra/database/connection.dart';
 import 'package:project/infra/database/sql_connection_adapter.dart';
 
 void main() {
-  late final Connection connection;
+  late final Connection<MySqlConnection> connection;
   late final PlaceOrderUsecase placeOrder;
   setUpAll(() {
     connection = SqlConnectionAdapter();
-    final repositoryFactory = DatabaseRepositoryFactory(connection);
+    final repositoryFactory =
+        DatabaseRepositoryFactory<MySqlConnection>(connection);
     placeOrder = PlaceOrderUsecase(repositoryFactory);
   });
   test('Deve fazer um pedido', () async {
