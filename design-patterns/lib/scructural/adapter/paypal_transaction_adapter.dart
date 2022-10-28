@@ -10,18 +10,18 @@ class PaypalTransactionAdapter implements Transaction {
   late final String status;
 
   PaypalTransactionAdapter(PaypalTransaction paypalTransaction) {
-    id = paypalTransaction.code;
-    amount = PaypalTransaction.amount;
-    status = _convertStatus(PaypalTransaction.situation);
+    id = paypalTransaction.id.toString();
+    amount = paypalTransaction.amount;
+    status = convertStatus(paypalTransaction.status);
   }
 
-  String _convertStatus(int situation) {
+  @override
+  String convertStatus(situation) {
     const status = {
-      1: "waiting_payment",
-      2: "paid",
-      3: "cancelled",
+      "P": "waiting_payment",
+      "S": "paid",
+      "F": "refunded",
     };
-
     return status[situation] ?? "";
   }
 }
