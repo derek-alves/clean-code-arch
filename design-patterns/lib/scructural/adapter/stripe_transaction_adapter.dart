@@ -12,10 +12,10 @@ class StripeTransactionAdapter implements Transaction {
   StripeTransactionAdapter(StripeTransaction stripeTransaction) {
     id = stripeTransaction.code;
     amount = stripeTransaction.amount;
-    status = _convertStatus(stripeTransaction.situation);
+    status = convertStatus(stripeTransaction.situation);
   }
-
-  String _convertStatus(int situation) {
+  @override
+  String convertStatus(situation) {
     const status = {
       1: "waiting_payment",
       2: "paid",
