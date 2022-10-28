@@ -4,4 +4,6 @@ abstract class Transaction {
   final String status;
 
   Transaction(this.id, this.amount, this.status);
+
+  String convertStatus(situation);
 }
