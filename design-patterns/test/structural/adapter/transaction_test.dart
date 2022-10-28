@@ -1,4 +1,5 @@
 import 'package:design_patterns/scructural/adapter/paypal_transaction.dart';
+import 'package:design_patterns/scructural/adapter/paypal_transaction_adapter.dart';
 import 'package:design_patterns/scructural/adapter/stripe_transaction.dart';
 import 'package:design_patterns/scructural/adapter/stripe_transaction_adapter.dart';
 import 'package:test/test.dart';
@@ -21,6 +22,14 @@ void main() {
     final stripeTransaction = StripeTransaction("AHN786AB8", 1000, 2);
     final transaction = StripeTransactionAdapter(stripeTransaction);
     expect(transaction.id, equals('AHN786AB8'));
+    expect(transaction.amount, equals(1000));
+    expect(transaction.status, equals('paid'));
+  });
+
+  test('Deve criar uma transação a partir do Paypal', () async {
+    final paypalTransaction = PaypalTransaction(74747474, 1000, "S");
+    final transaction = PaypalTransactionAdapter(paypalTransaction);
+    expect(transaction.id, equals('74747474'));
     expect(transaction.amount, equals(1000));
     expect(transaction.status, equals('paid'));
   });
