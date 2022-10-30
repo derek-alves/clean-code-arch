@@ -14,4 +14,12 @@ void main() {
     parkinLot.checkin("AAA-9999", DateTime(2022, 01, 01, 10));
     expect(parkinLot.getEmptySpaces, equals(499));
   });
+
+  test('Deve calcular o valor que deve ser pago', () async {
+    var parkinLot = ParkingLot(500);
+
+    parkinLot.checkin("AAA-9999", DateTime(2022, 01, 01, 10));
+    final price = parkinLot.checkout("AAA-9999", DateTime(2022, 01, 01, 15));
+    expect(price, equals(50));
+  });
 }
