@@ -1,5 +1,6 @@
 //Definir uma família de algoritmos, encapsular cada uma delas e torná-las INTERCAMBIAVEIS
 
+import 'package:design_patterns/behavioral/strategy/airport_price_calculator.dart';
 import 'package:design_patterns/behavioral/strategy/beach_price_calculator.dart';
 import 'package:design_patterns/behavioral/strategy/parking_lot.dart';
 import 'package:design_patterns/behavioral/strategy/shopping_price_calculator.dart';
@@ -9,7 +10,6 @@ void main() {
   test('Deve criar um estacionamento vazio', () async {
     var parkinLot = ParkingLot(
       500,
-      location: "beach",
       priceCalculator: BeachPriceCalculator(),
     );
     expect(parkinLot.getEmptySpaces, equals(500));
@@ -18,7 +18,6 @@ void main() {
   test('Deve entrar um carro', () async {
     var parkinLot = ParkingLot(
       500,
-      location: "beach",
       priceCalculator: BeachPriceCalculator(),
     );
     parkinLot.checkin("AAA-9999", DateTime(2022, 01, 01, 10));
@@ -30,7 +29,6 @@ void main() {
       () async {
     var parkinLot = ParkingLot(
       500,
-      location: "beach",
       priceCalculator: BeachPriceCalculator(),
     );
 
@@ -43,7 +41,6 @@ void main() {
       () async {
     var parkinLot = ParkingLot(
       500,
-      location: "shopping",
       priceCalculator: ShoppingPriceCalculator(),
     );
 
@@ -57,8 +54,7 @@ void main() {
       () async {
     var parkinLot = ParkingLot(
       500,
-      location: "beach",
-      priceCalculator: BeachPriceCalculator(),
+      priceCalculator: AirportPriceCalculator(),
     );
 
     parkinLot.checkin("AAA-9999", DateTime(2022, 01, 01, 10));

@@ -4,11 +4,10 @@ import 'package:design_patterns/behavioral/strategy/price_calculator.dart';
 class ParkingLot {
   final int capacity;
   final List<ParkedCar> _parkedCars = [];
-  final String location;
+
   final PriceCalculator priceCalculator;
   ParkingLot(
     this.capacity, {
-    this.location = "shopping",
     required this.priceCalculator,
   });
 
@@ -27,21 +26,8 @@ class ParkingLot {
     }
 
     _parkedCars.removeWhere((parkendCar) => parkendCar.plate == plate);
-    final diff = date.difference(parkedCar.date).inHours;
-
-    // if (location == "shopping") {
-    //   return diff * 10;
-    // }
-
-    // if (location == "airport") {
-    //   double price = 20.0;
-    //   int remainingHours = diff - 3;
-    //   if (remainingHours <= 0) return price;
-    //   price += remainingHours * 10;
-    //   return price;
-    // }
-
-    return priceCalculator.calculate(hours: diff);
+    final parkedHours = date.difference(parkedCar.date).inHours;
+    return priceCalculator.calculate(hours: parkedHours);
   }
 }
 
