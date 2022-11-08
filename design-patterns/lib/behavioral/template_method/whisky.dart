@@ -1,7 +1,7 @@
-import 'package:design_patterns/behavioral/template_method/item.dart';
+import 'tax_item.dart';
 
-class Whisky extends Item {
-  Whisky(super.category, super.description, super.price);
+class Whisky extends TaxItem {
+  Whisky(String description, num price) : super('Whisky', description, price);
 
   @override
   num getTaxes() {
