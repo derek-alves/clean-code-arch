@@ -4,6 +4,4 @@ abstract class Item {
   final num price;
 
   Item(this.category, this.description, this.price);
-
-  num getTaxes();
 }
