@@ -1,4 +1,5 @@
 import 'package:design_patterns/behavioral/template_method/item.dart';
+import 'package:design_patterns/behavioral/template_method/tax_item.dart';
 
 class Invoice {
   late final List<Item> _item;
@@ -11,7 +12,11 @@ class Invoice {
 
   num getTaxes() {
     num taxes = 0;
-    for (Item item in _item) {}
+    for (Item item in _item) {
+      if (item is TaxItem) {
+        taxes += item.getTaxes();
+      }
+    }
 
     return taxes;
   }
