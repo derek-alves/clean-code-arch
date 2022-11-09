@@ -12,6 +12,6 @@ void main() {
     invoice.addItem(Water("Santa Catarina", 0));
 
     final taxes = invoice.getTaxes();
-    expect(taxes, equals(21));
+    expect(taxes, equals(5));
   });
 }
