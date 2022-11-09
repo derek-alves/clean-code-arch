@@ -4,7 +4,7 @@ class Beer extends TaxItem {
   Beer(String description, num price) : super('Beer', description, price);
 
   @override
-  num getTaxes() {
-    return (price * 10) / 100;
+  num getTax() {
+    return 10;
   }
 }
