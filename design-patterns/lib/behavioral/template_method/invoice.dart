@@ -14,7 +14,7 @@ class Invoice {
     num taxes = 0;
     for (Item item in _item) {
       if (item is TaxItem) {
-        taxes += item.getTaxes();
+        taxes += item.caculateTax();
       }
     }
 
