@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class PlaceOrderInput {
   final String cpf;
   final List<OrderItemInput> orderItems;
@@ -10,7 +12,17 @@ class PlaceOrderInput {
     required this.date,
     this.coupon,
   });
-
+  factory PlaceOrderInput.fromRequest(String body) {
+    var map = jsonDecode(body);
+    return PlaceOrderInput(
+      cpf: map['cpf'],
+      orderItems: (map['orderItems'] as List)
+          .map((item) => OrderItemInput.fromMap(item))
+          .toList(),
+      date: DateTime.fromMicrosecondsSinceEpoch(map['date']),
+      coupon: map['coupon'],
+    );
+  }
   factory PlaceOrderInput.fromMap(Map<String, dynamic> map) => PlaceOrderInput(
         cpf: map['cpf'],
         orderItems: (map['orderItems'] as List)
