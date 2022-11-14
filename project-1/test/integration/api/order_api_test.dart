@@ -14,10 +14,10 @@ void main() {
     ));
     String serverAdress = await CustomEnv.get(key: "server_address");
     String serverPort = await CustomEnv.get(key: "server_port");
-    url = 'http://${serverAdress}:${serverPort}/';
+    url = 'http://${serverAdress}:${serverPort}/order/';
   });
-  test("Should create order", () async {
-    var response = await dio.post(url + "orders", data: {
+  test("Deve testar a API /order POST", () async {
+    var response = await dio.post(url, data: {
       "cpf": "457.046.588-90",
       "orderItems": [
         {"idItem": 1, "quantity": 1},
@@ -28,5 +28,16 @@ void main() {
       "coupon": "VALE20"
     });
     expect(response.statusCode, equals(200));
+  });
+
+  test("Deve testar a API /order/simulateFright (POST)", () async {
+    var response = await dio.post(url + "simulate-freight", data: [
+      {"idItem": 4, "quantity": 1},
+      {"idItem": 5, "quantity": 1},
+      {"idItem": 6, "quantity": 3}
+    ]);
+
+    print(response);
+    expect(response.data["amount"], equals(200));
   });
 }
