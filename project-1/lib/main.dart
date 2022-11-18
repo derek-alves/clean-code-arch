@@ -1,19 +1,17 @@
-import 'package:project/order_api.dart';
+import 'package:project/infra/router/order_router.dart';
+import 'package:project/utils/custom_env.dart';
 import 'package:shelf/shelf.dart';
-
-import 'package:shelf/shelf_io.dart' as shelf_io;
+import 'infra/server/custom_server.dart';
 
 void main() async {
-  var cascadeHandler =
-      Cascade().add(OrderApi().getHandler()).add(_echoRequest).handler;
+  var cascadeHandler = Cascade().add(OrderRouter().getHandler()).handler;
 
   var handler =
       const Pipeline().addMiddleware(logRequests()).addHandler(cascadeHandler);
 
-  var server = await shelf_io.serve(handler, 'localhost', 8000);
-
-  print('Serving at http://${server.address.host}:${server.port}');
+  await CustomServer().initialize(
+    handler: handler,
+    address: await CustomEnv.get<String>(key: 'server_address'),
+    port: await CustomEnv.get<int>(key: 'server_port'),
+  );
 }
-
-Response _echoRequest(Request request) =>
-    Response.ok('Request for "${request.url}"');
