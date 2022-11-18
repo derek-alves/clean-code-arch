@@ -1,5 +1,7 @@
 // ignore_for_file: unnecessary_brace_in_string_interps
 
+import 'dart:convert';
+
 import 'package:project/utils/custom_env.dart';
 import 'package:test/test.dart';
 import 'package:dio/dio.dart';
@@ -37,7 +39,8 @@ void main() {
       {"idItem": 6, "quantity": 3}
     ]);
 
-    print(response);
-    expect(response.data["amount"], equals(200));
+    var data = jsonDecode(response.data);
+
+    expect(data["amount"], equals(260));
   });
 }
