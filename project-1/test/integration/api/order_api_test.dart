@@ -2,7 +2,7 @@
 
 import 'dart:convert';
 
-import 'package:project/utils/custom_env.dart';
+import 'package:project/utils/make_url.dart';
 import 'package:test/test.dart';
 import 'package:dio/dio.dart';
 
@@ -10,13 +10,9 @@ void main() {
   late final Dio dio;
   late final String url;
   setUpAll(() async {
-    dio = Dio(BaseOptions(
-      connectTimeout: 5000,
-      receiveTimeout: 5000,
-    ));
-    String serverAdress = await CustomEnv.get(key: "server_address");
-    String serverPort = await CustomEnv.get(key: "server_port");
-    url = 'http://${serverAdress}:${serverPort}/order/';
+    dio = Dio();
+
+    url = await MakeUrl.execute("order");
   });
   test("Deve testar a API /order POST", () async {
     var response = await dio.post(url, data: {
