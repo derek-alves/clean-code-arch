@@ -29,13 +29,20 @@ class OrderApi extends ApiHandler {
         final simulateFreight = makeSimulateFreightFactory();
         var input = jsonDecode(await request.readAsString());
 
-        bool isTrue = input.toString() is List<Map<String, dynamic>>;
-        if (input is! List<Map<String, dynamic>>) {
-          return Response.badRequest();
+        if (input is! List) {
+          return Response.badRequest(body: "must be a list");
         }
 
-        var response = await simulateFreight(SimulateFreightInput(input));
-        return Response.ok(response.toJson());
+        if (input.isEmpty) {
+          return Response.badRequest(body: " cannot be empty");
+        }
+
+        var response = await simulateFreight(
+          SimulateFreightInput(
+            input.map((dynamic e) => e as Map<String, dynamic>).toList(),
+          ),
+        );
+        return Response.ok(jsonEncode(response.toJson()));
       } catch (e) {
         return Response.notFound(e);
       }
