@@ -18,6 +18,7 @@ void main() {
     connection = SqlConnectionAdapter();
     itemRepository = ItemRepositoryImpl(connection);
   }));
+
   test("Deve simular o frete dos itens", () async {
     final simulateFreight = SimulateFreightUsecase(
       itemRepository: itemRepository,
