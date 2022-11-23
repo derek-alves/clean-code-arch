@@ -4,10 +4,10 @@ import 'package:project/infra/repository/repository.dart';
 
 import '../../domain/repository/repository.dart';
 
-class DatabaseRepositoryFactory<T> implements RepositoryFactory {
+class DatabaseRepositoryAbstractFactory<T> implements RepositoryFactory {
   final Connection<T> connection;
 
-  DatabaseRepositoryFactory(this.connection);
+  DatabaseRepositoryAbstractFactory(this.connection);
   @override
   CouponRepository createCouponRepository() {
     return CouponRepositoryImpl(connection);
