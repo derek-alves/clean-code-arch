@@ -1,10 +1,11 @@
 import 'package:project/utils/custom_env.dart';
 import 'package:shelf/shelf.dart';
-import 'infra/api/router/order_router.dart';
+import 'infra/factory/router/make_order_router_factory.dart';
 import 'infra/server/custom_server.dart';
 
 void main() async {
-  var cascadeHandler = Cascade().add(OrderRouter().getHandler()).handler;
+  var cascadeHandler =
+      Cascade().add(makeOrderRouterFactory().getHandler()).handler;
 
   var handler =
       const Pipeline().addMiddleware(logRequests()).addHandler(cascadeHandler);
