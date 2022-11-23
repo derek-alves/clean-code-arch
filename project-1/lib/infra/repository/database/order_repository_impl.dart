@@ -36,7 +36,13 @@ class OrderRepositoryImpl implements OrderRepository {
 
   @override
   Future<int> count() async {
-    final result = connection.query("SELECT COUNT(*) FROM market.order");
-    return 0;
+    final result = await connection.query("SELECT COUNT(*) FROM market.order");
+    return result ?? 0;
+  }
+
+  @override
+  Future<Order> get(String code) {
+    // TODO: implement get
+    throw UnimplementedError();
   }
 }

@@ -14,4 +14,10 @@ class OrderRepositoryMemory implements OrderRepository {
   Future<int> count() {
     return Future.value(_orders.length);
   }
+
+  @override
+  Future<Order> get(String code) {
+    // TODO: implement get
+    throw UnimplementedError();
+  }
 }
