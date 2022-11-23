@@ -5,11 +5,13 @@ import 'package:shelf/shelf.dart';
 
 import '../../../application/usecase/place_order/place_order_input.dart';
 import '../../../application/usecase/place_order/place_order_usecase.dart';
-import '../../factory/make_database_repository_factory.dart';
+import '../../factory/database_repository_abstract_factory.dart';
 import '../../factory/make_simulate_freight_factory.dart';
 
 class OrderController {
-  final respositoryFactory = makeDatabaseRepositoryFactory();
+  final DatabaseRepositoryAbstractFactory respositoryFactory;
+
+  OrderController(this.respositoryFactory);
   Future<Response> placeOrder(Request request) async {
     var placeOrder = PlaceOrderUsecase(respositoryFactory);
     var input = PlaceOrderInput.fromRequest(await request.readAsString());

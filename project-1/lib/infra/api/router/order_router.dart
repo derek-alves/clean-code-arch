@@ -5,7 +5,10 @@ import 'package:shelf_router/shelf_router.dart';
 import '../controller/order_controller.dart';
 
 class OrderRouter extends ApiHandler {
-  final orderController = OrderController();
+  final OrderController orderController;
+
+  OrderRouter({required this.orderController});
+
   @override
   Handler getHandler() {
     var router = Router();
