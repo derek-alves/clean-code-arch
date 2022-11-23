@@ -16,7 +16,7 @@ class OrderController {
     var placeOrder = PlaceOrderUsecase(respositoryFactory);
     var input = PlaceOrderInput.fromRequest(await request.readAsString());
     try {
-      await placeOrder.execute(input);
+      await placeOrder(input);
       return Response(200);
     } on Exception catch (e) {
       return Response.notFound(e);

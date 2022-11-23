@@ -28,7 +28,7 @@ void main() {
     };
     final input = PlaceOrderInput.fromMap(inputMap);
 
-    final output = await placeOrder.execute(input);
+    final output = await placeOrder(input);
     expect(output.total, equals(138));
   });
 
@@ -44,7 +44,7 @@ void main() {
     };
     final input = PlaceOrderInput.fromMap(inputMap);
 
-    final output = await placeOrder.execute(input);
+    final output = await placeOrder(input);
     expect(output.total, equals(6350));
   });
 
@@ -60,7 +60,7 @@ void main() {
     };
     final input = PlaceOrderInput.fromMap(inputMap);
 
-    final output = await placeOrder.execute(input);
+    final output = await placeOrder(input);
     expect(output.code, isA<String>());
   });
 }

@@ -18,7 +18,7 @@ class PlaceOrderUsecase {
     couponRepository = repositoryFactory.createCouponRepository();
   }
 
-  Future<PlaceOrderOutput> execute(PlaceOrderInput input) async {
+  Future<PlaceOrderOutput> call(PlaceOrderInput input) async {
     final sequency = await orderRepository.count() + 1;
     final order = Order(cpf: input.cpf, date: input.date, sequency: sequency);
     for (var orderItem in input.orderItems) {
