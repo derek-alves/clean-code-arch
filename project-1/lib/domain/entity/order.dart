@@ -69,5 +69,10 @@ class Order {
 
   String getCode() => _code!.value;
 
-  //factory Order.fromMap(Map<String, dynamic> map) => Order(cpf: cpf);
+  factory Order.fromMap(Map<String, dynamic> map) => Order(
+        cpf: map["cpf"],
+        date: DateTime.fromMillisecondsSinceEpoch(map["issue_date"]),
+        id: map["id"],
+        sequency: map["id"],
+      );
 }
