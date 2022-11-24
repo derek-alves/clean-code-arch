@@ -31,7 +31,6 @@ class OrderRepositoryImpl implements OrderRepository {
             orderItem.price,
           ]);
     }
-    return Future.value();
   }
 
   @override
@@ -41,8 +40,10 @@ class OrderRepositoryImpl implements OrderRepository {
   }
 
   @override
-  Future<Order> get(String code) {
-    // TODO: implement get
-    throw UnimplementedError();
+  Future<Order> get(String code) async {
+    final result = await connection
+        .query("SELECT * FROM market.order where code = ?", [code]);
+    if (result.affectedRows == 0) throw Exception("Order not found");
+    return Order.fromMap(result.first.fields);
   }
 }
