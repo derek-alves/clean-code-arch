@@ -12,6 +12,9 @@ class GetOrderUsecase {
 
   Future<GetOrderOutput> call(String code) async {
     final order = await _orderRepository.get(code);
-    return GetOrderOutput(total: order.total);
+    return GetOrderOutput(
+      total: order.total,
+      code: order.getCode(),
+    );
   }
 }
