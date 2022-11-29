@@ -12,4 +12,11 @@ class OrderItem {
   });
 
   double get totalPrice => price * quantity;
+
+  factory OrderItem.fromMap(Map<String, dynamic> map) => OrderItem(
+        price: map["price"],
+        quantity: map["quantity"],
+        id: map["id"],
+        idItem: map["id_item"],
+      );
 }
