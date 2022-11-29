@@ -1,9 +1,9 @@
 class Coupon {
   final String code;
-  final double percentage;
+  double? percentage;
   int? expiredDate;
 
-  Coupon(this.code, this.percentage, [this.expiredDate]);
+  Coupon(this.code, [this.percentage = 0, this.expiredDate]);
 
   factory Coupon.fromMap(Map<String, dynamic> map) {
     return Coupon(
@@ -26,6 +26,6 @@ class Coupon {
 
   double calculateDiscount(double total, [DateTime? date]) {
     if (isExpired(date)) return 0;
-    return (total * percentage) / 100;
+    return (total * percentage! / 100);
   }
 }
