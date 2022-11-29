@@ -24,6 +24,7 @@ class Order {
     DateTime? date,
     this.freightCalculator = const DefaultFreightCalculator(),
     this.sequency = 1,
+    this.coupon,
   }) {
     this.date = (date ?? DateTime.now()).millisecondsSinceEpoch;
 
@@ -74,5 +75,6 @@ class Order {
         date: DateTime.fromMillisecondsSinceEpoch(map["issue_date"]),
         id: map["id"],
         sequency: map["id"],
+        coupon: Coupon(map["coupon"]),
       );
 }
