@@ -65,7 +65,7 @@ class OrderRepositoryImpl implements OrderRepository {
           "SELECT * FROM market.coupon where code = ?",
           [orderData.coupon!.code]);
 
-      var couponData = Coupon.fromMap(couponResult.first.field);
+      var couponData = Coupon.fromMap(couponResult.first.fields);
       orderData.addCoupon(couponData);
     }
 
