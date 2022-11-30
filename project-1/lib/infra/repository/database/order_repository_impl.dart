@@ -71,4 +71,17 @@ class OrderRepositoryImpl implements OrderRepository {
 
     return orderData;
   }
+
+  @override
+  Future<List<Order>> getAll() async {
+    final result = await connection.query("SELECT * FROM market.order");
+
+    if (result.affectedRows == 0) return [];
+    final orders = (result as List)
+        .map(
+          (order) => Order.fromMap(order.fields),
+        )
+        .toList();
+    return orders;
+  }
 }

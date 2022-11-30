@@ -20,4 +20,9 @@ class OrderRepositoryMemory implements OrderRepository {
     // TODO: implement get
     throw UnimplementedError();
   }
+
+  @override
+  Future<List<Order>> getAll() {
+    return Future.value(_orders);
+  }
 }
